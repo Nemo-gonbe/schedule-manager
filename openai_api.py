@@ -15,9 +15,10 @@ def get_schedule_from_chatgpt(task_list, available_hours):
 [09:00〜10:00] 英語レポート（授業）
 [10:00〜11:00] 敵モンスター登録（ゲーム制作）
 """
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.4
-    )
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",  # ← ここを変更
+    messages=[{"role": "user", "content": prompt}],
+    temperature=0.4
+)
+
     return response['choices'][0]['message']['content']
