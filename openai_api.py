@@ -1,9 +1,9 @@
-import openai
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI()
 
 def get_schedule_from_chatgpt(task_list, available_hours):
     prompt = f"""以下のタスクリストを、今日のスケジュールとして時間帯に割り振ってください。
@@ -15,9 +15,9 @@ def get_schedule_from_chatgpt(task_list, available_hours):
 [09:00〜10:00] 英語レポート（授業）
 [10:00〜11:00] 敵モンスター登録（ゲーム制作）
 """
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # ← 安価モデルを使用
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.4
     )
-    return response['choices'][0]['message']['content']  # ← ← ← ← ここが正しい位置（スペース4つ）
+    return response.choices[0].message.content
