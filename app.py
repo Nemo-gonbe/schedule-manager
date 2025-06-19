@@ -63,7 +63,7 @@ if page == "📋 タスク管理":
                     if st.button("完了", key=f"done_{idx}"):
                         tasks[idx]["done"] = True
                         save_tasks(tasks)
-                        st.experimental_rerun()
+                        st.rerun()
 
 # スケジュール生成
 elif page == "📆 スケジュール表":
