@@ -48,7 +48,7 @@ if page == "📋 タスク管理":
             })
             save_tasks(tasks)
             st.success("✅ タスクを追加しました")
-            st.experimental_rerun()
+            st.rerun()
 
     st.subheader("📝 未完了タスク一覧")
     if not any(not t["done"] for t in tasks):
